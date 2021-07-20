@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<style>
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+nav{
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background: white;
+  color:black;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 100px;
+  flex-wrap: wrap;
+}
+nav .logo{
+  color: black;
+  font-size: 35px;
+  font-weight: 500;
+}
+nav ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+nav ul li{
+  margin: 0 5px;
+}
+nav ul li a{
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+nav ul li a.active,
+nav ul li a:hover{
+  color: #111;
+  border-top: 2px solid purple;
+ border-bottom: 2px solid purple;
+}
+nav .menu-btn i{
+  color: black;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+input[type="checkbox"]{
+  display: none;
+}
+@media (max-width: 920px) {
+  nav .menu-btn i{
+    display: block;
+  }
+  #click:checked ~ .menu-btn i:before{
+    content: "\f00d";
+  }
+  nav ul{
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    background: white;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    display: block;
+
+  }
+  #click:checked ~ ul{
+    left: 0;
+  }
+  nav ul li{
+    width: 100%;
+    margin: 40px 0;
+  }
+  nav ul li a{
+    width: 100%;
+    margin-left: -100%;
+    display: block;
+    font-size: 20px;
+
+  }
+  #click:checked ~ ul li a{
+    margin-left: 0px;
+  }
+  nav ul li a.active,
+  nav ul li a:hover{
+    background: none;
+    color: cyan;
+  }
+}
+
+
+/*----Footer----*/
+footer{
+  position: absolute;
+  bottom: 0%;
+    margin-top: 50px;
+    background: black;
+    height: auto;
+    width: 100%;
+    font-family: sans-serif;
+    padding-top: 35px;
+    color: white;
+
+}
+.footer__content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer__content h3{
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 2.8rem;
+}
+.footer__content p{
+    max-width: 450px;
+    margin: 10px auto;
+    line-height: 26px;
+    font-size: 14px;
+}
+.social__icons{
+list-style: none;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 1rem 0 3 rem 0;
+}
+.social__icons li{
+    margin: 0 10px;
+    font-size: 26px;
+}
+.fab{
+    color: white;
+
+}
+.footer__bottom{
+    padding: 20px 0;
+    text-align: center;
+}
+.footer__bottom p{
+    font-size: 14px;
+    text-transform: capitalize;
+}
+.footer__bottom span{
+    text-transform: uppercase;
+    opacity: .9;
+    font-weight: 200;
+}
+</style>
+
+<!---Fontawesome Link-->
+<script src="https://kit.fontawesome.com/1db1bb6ebc.js" crossorigin="anonymous"></script>
+
+
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+           MEROSIGN
+        </div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+           <li><a  href="#">Home</a></li>
+           <li><a href="#">Features</a></li>
+           <li><a href="%url 'blogHome' %} ">Queries</a></li>
+           <li><a class="active" href="#">Contact Us</a></li>
+           <li><a href="{%url 'feedback' %}">Feedback</a></li>
+
+            {% if user.is_authenticated %}
+           <li><a href="{%url 'userprofile' %}"><i class="fas fa-user-circle"></i></a> </li>
+            {% endif %}
+        </ul>
+     </nav>
+     <div class="img__container">
+
+    </div>
+<br>
+<br>
+<h6>
+
+{% for message in messages  %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong> </strong> {{ message }}!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      {% endfor %}
+
+</h6>
+
+
+
+
+<div class="container my-3">
+<h3>Contact MeroSign Admin</h3>
+<form action="contact/" method="post">
+{% csrf_token %}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="tel" class="form-control" id="phone" name="phone">
+  </div>
+
+  <div class="form-group">
+    <label for="content">Describe your issue :</label>
+    <textarea class="form-control" name="content" id="content" cols="30" rows="5"></textarea>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+
+
+
+
+     <!--       <footer>
+    <div class="footer__content">
+        <h3> MeroSign</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+             voluptatem repudiandae illo suscipit!</p>
+
+             <ul class="social__icons">
+                 <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                 <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                 <li><a href="#"><i class="fab fa-github-square"></i></a></li>
+                 <li><a href="#"><i class="fab fa-twitter-square"></i></i></a></li>
+
+             </ul>
+    </div>
+    <div class="footer__bottom">
+        <p> Copyroght &copy;2021 merosign. designed by <span> LearnNShare</span></p>
+
+    </div>
+</footer>
+-->
+</body>
+</html>
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+
+</body>
+</html>

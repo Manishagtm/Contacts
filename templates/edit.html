@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <script src="https://kit.fontawesome.com/1db1bb6ebc.js" crossorigin="anonymous"></script>
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+nav{
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background: white;
+  position: sticky;
+  color:black;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 100px;
+  flex-wrap: wrap;
+}
+nav .logo{
+  color: black;
+  font-size: 35px;
+  font-weight: 500;
+}
+nav ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+nav ul li{
+  margin: 0 5px;
+}
+nav ul li a{
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+nav ul li a.active,
+nav ul li a:hover{
+  color: #111;
+ border-top: 2px solid purple;
+ border-bottom: 2px solid purple;
+}
+nav .menu-btn i{
+  color: black;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+input[type="checkbox"]{
+  display: none;
+}
+@media (max-width: 920px) {
+  nav .menu-btn i{
+    display: block;
+  }
+  #click:checked ~ .menu-btn i:before{
+    content: "\f00d";
+  }
+  nav ul{
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    background: white;
+    height: 100vh;
+    width: 100%;
+    text-align: right;
+    display: block;
+    transition: all .5s ease-in-out;
+
+  }
+  #click:checked ~ ul{
+    left: 0;
+  }
+  nav ul li{
+    width: 100%;
+    margin: 40px 0;
+  }
+  nav ul li a{
+    width: 100%;
+    margin-left: -100%;
+    display: block;
+    font-size: 20px;
+
+  }
+  #click:checked ~ ul li a{
+    margin-left: 0px;
+  }
+  nav ul li a.active,
+  nav ul li a:hover{
+    background: none;
+    border: none;
+    color: purple;
+  }
+}
+
+
+.container{
+display: flex;
+flex-direction: row;
+margin:5%;
+flex-wrap: wrap;
+background:white;
+border-radius:5px;
+box-shadow: 0 8px 16px rgba(0,0,0,.3);
+}
+
+.container__left{
+
+ margin: 10%;
+ height: 300px;
+ width: 300px;
+ position: relative;
+ border: 5px solid black;
+ border-radius: 50%;
+ background: url('image/img1.png');
+ background-size: 100% 100%;
+ overflow: hidden;
+
+
+}
+.my__file{
+  position: absolute;
+  bottom: 0;
+  outline: none;
+  color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 120px;
+  cursor: pointer;
+  transition: 0.5s;
+  background: rgba(0,0,0,.5);
+}
+.my__file::-webkit-file-upload-button{
+  visibility: hidden;
+}
+.my__file::before{
+  content: "\f030";
+  font-family: fontAwesome;
+  font-size: 50px;
+  color: white;
+  display: inline-block;
+
+}
+.my__file::after{
+  content: 'Update';
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  top: 70%;
+  font-family:'Poppins', sans-serif;
+  font-size: 15px;
+}
+@media (max-width: 920px){
+  .container__left{
+    height: 200px;
+    width: 200px;
+  }
+  .my__file{
+  padding: 15px 80px;
+}
+.my__file::before{
+  font-size: 40px;
+
+}
+.my__file::after{
+
+  font-size: 13px;
+}
+}
+.container__right{
+  margin: 2%;
+  margin-left: 5%;
+}
+.container__right .info,
+.container__right .project
+{
+margin-bottom: 45px;
+}
+.container__right .info h3,
+.container__right .project h3{
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid gray;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 35px;
+}
+.container__right .info__data,
+.container__right .project__data{
+display: grid;
+
+}
+.container__right .info__data .data h4,
+.container__right .project__data .data h4{
+  margin-bottom: 5px;
+  font-size: 25px;
+  font-weight: 500;
+}
+.container__right .info__data .data p,
+.container__right .project__data .data p{
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.container__right .btn
+{
+width:150px;
+height:45px;
+border:none;
+outline:none;
+background:purple;
+font-size:18px;
+cursor:pointer;
+text-transform:uppercase;
+color:white;
+border-radius:5px;
+transition:.4s;
+}
+.container__right .btn:hover
+{
+opacity: .5;
+}
+</style>
+
+    <title>Edit</title>
+
+</head>
+<body>
+    <nav>
+        <div class="logo">
+           MEROSIGN
+        </div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+           <li><a  href="user.html">Home</a></li>
+           <li><a href="#"> Create</a></li>
+           <li><a href="#">Signature</a></li>
+           <li><a href="#">Contact Us</a></li>
+           <li><a href="#">Settings</a></li>
+           <li><a href="#">Logout</a></li>
+
+        </ul>
+     </nav>
+
+    <div class="container">
+      <div class="container__left">
+        <input type="file" class="my__file">
+
+
+       </div>
+
+      <div class="container__right">
+        <div class="info">
+          <h3> Information</h3>
+          <div class="info__data">
+          <div class="data">
+            <h4> Name </h4>
+            <p> Ronisha Adhikari</p>
+          </div>
+          <div class="data">
+            <h4> Email </h4>
+            <p> ronishaad@gmail.com</p>
+          </div>
+          <div class="data">
+            <h4> Mobile Number </h4>
+            <p> 9847034522</p>
+
+          </div>
+        </div>
+
+      </div>
+        <div class="project">
+          <h3> Projects</h3>
+          <div class="project__data">
+          <div class="data">
+            <h4>Recent </h4>
+            <p> Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+        </div>
+        </div>
+
+
+        <a href="{%url 'userprofile' %}">
+            <input type="submit" class="btn" value="Save">
+          </a>
+
+
+      </div>
+{% block content %}
+{% endblock %}
+
+
+
+
+
+    </div>
+
+
+</body>
+</html>
